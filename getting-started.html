@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting Started | ECSJs by youniverse-center</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/ecsjs/favicon.ico">
+    <meta name="description" content="The Entity Component System for JavaScript">
+    
+    <link rel="preload" href="/ecsjs/assets/css/0.styles.5e73f358.css" as="style"><link rel="preload" href="/ecsjs/assets/js/app.e1eef895.js" as="script"><link rel="preload" href="/ecsjs/assets/js/2.1562c8f2.js" as="script"><link rel="preload" href="/ecsjs/assets/js/8.8cfe5d7b.js" as="script"><link rel="prefetch" href="/ecsjs/assets/js/3.53198e87.js"><link rel="prefetch" href="/ecsjs/assets/js/4.d55aa230.js"><link rel="prefetch" href="/ecsjs/assets/js/5.5c367995.js"><link rel="prefetch" href="/ecsjs/assets/js/6.18dc24fc.js"><link rel="prefetch" href="/ecsjs/assets/js/7.4bc4ddf7.js"><link rel="prefetch" href="/ecsjs/assets/js/9.97906f1d.js">
+    <link rel="stylesheet" href="/ecsjs/assets/css/0.styles.5e73f358.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ecsjs/" class="home-link router-link-active"><img src="/ecsjs/android-chrome-192x192.png" alt="ECSJs by youniverse-center" class="logo"> <span class="site-name can-hide">ECSJs by youniverse-center</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/ecsjs/" aria-current="page" class="sidebar-link">ECSJs</a></li><li><a href="/ecsjs/getting-started.html" aria-current="page" class="active sidebar-link">Getting Started</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ecsjs/getting-started.html#create-registry-without-typescript" class="sidebar-link">Create registry without TypeScript</a></li><li class="sidebar-sub-header"><a href="/ecsjs/getting-started.html#create-registry-with-typescript" class="sidebar-link">Create registry with TypeScript</a></li><li class="sidebar-sub-header"><a href="/ecsjs/getting-started.html#create-entity" class="sidebar-link">Create entity</a></li><li class="sidebar-sub-header"><a href="/ecsjs/getting-started.html#add-component" class="sidebar-link">Add component</a></li><li class="sidebar-sub-header"><a href="/ecsjs/getting-started.html#query-the-registry" class="sidebar-link">Query the registry</a></li></ul></li><li><a href="/ecsjs/listeners.html" class="sidebar-link">Listeners</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="getting-started"><a href="#getting-started" class="header-anchor">#</a> Getting Started</h1> <p>It is strongly recommended to use TypeScript so you will have all the goodies what comes with typing and code completion.</p> <h2 id="create-registry-without-typescript"><a href="#create-registry-without-typescript" class="header-anchor">#</a> Create registry without TypeScript</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// src/ecs.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> createRegistry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@youniverse-center/ecsjs'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">createRegistry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>And you are good to go with the entities and components.</p> <h2 id="create-registry-with-typescript"><a href="#create-registry-with-typescript" class="header-anchor">#</a> Create registry with TypeScript</h2> <p>First we will create typings for our components:</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">//src/components.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Vector2 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'three'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> <span class="token class-name">NameComponent</span> <span class="token punctuation">{</span>
+    value<span class="token operator">:</span> <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">TagsComponent</span> <span class="token punctuation">{</span>
+    tags<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">TransformComponent</span> <span class="token punctuation">{</span>
+    position<span class="token operator">:</span> Vector2
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">Components</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    Name<span class="token operator">:</span> NameComponent<span class="token punctuation">,</span>
+    Tags<span class="token operator">:</span> TagsComponent<span class="token punctuation">,</span>
+    Transform<span class="token operator">:</span> TransformComponent
+<span class="token punctuation">}</span>
+</code></pre></div><p>Then we create the registry pointing what components we have.</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">// src/ecs.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> createRegistry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@youniverse-center/ecsjs'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Components <span class="token keyword">from</span> <span class="token string">'./components'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token generic-function"><span class="token function">createRegistry</span><span class="token generic class-name"><span class="token operator">&lt;</span>Components<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="create-entity"><a href="#create-entity" class="header-anchor">#</a> Create entity</h2> <p>To create entity use <code>createEntity(): Entity</code> method on the registry.</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> ecs <span class="token keyword">from</span> <span class="token string">'./ecs.ts'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> entity <span class="token operator">=</span> ecs<span class="token punctuation">.</span><span class="token function">createEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="add-component"><a href="#add-component" class="header-anchor">#</a> Add component</h2> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> ecs <span class="token keyword">from</span> <span class="token string">'./ecs.ts'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> entity <span class="token operator">=</span> ecs<span class="token punctuation">.</span><span class="token function">createEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// with entity wrapper</span>
+<span class="token keyword">const</span> tagsComponent <span class="token operator">=</span> entity<span class="token punctuation">.</span><span class="token function">addComponent</span><span class="token punctuation">(</span><span class="token string">'Tags'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> tags<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'awesomness'</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// addComponent returs reference to the component</span>
+tagsComponent<span class="token punctuation">.</span>tags<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'another tag'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// or with registry</span>
+<span class="token keyword">const</span> nameComponent <span class="token operator">=</span> ecs<span class="token punctuation">.</span><span class="token function">assignComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token string">'Name'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token string">'Some awesome entity'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//assignComponent returns reference to the component</span>
+nameComponent<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'More than awesome entity'</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="query-the-registry"><a href="#query-the-registry" class="header-anchor">#</a> Query the registry</h2> <p>To get entities with specific components use <code>getView(allComponents: ComponentGroup, anyComponents: ComponentGroup): View</code></p> <p>By <code>allComponents</code> you specify what components the entity has to have.
+By <code>anyComponents</code> you specify what components you are interested in but the entity doesn't have to have it.</p> <p><code>ComponentGroup</code> is an array of keys of your components (<code>type ComponentGroup = (keyof Components)[]</code>)</p> <p>This method will return the View object with <code>result</code> accessor, what is an array of the produced entity view elements.
+Each of this elements are:</p> <ul><li><code>entity: Entity</code> - entity object wrapper</li> <li><code>component: &lt;T keyof Components&gt;(componentName: T) =&gt; Components[T]</code> - method to get one of the components specified in the query</li> <li><code>hasComponent: (componentName: keyof Components) =&gt; boolean</code> - method to get info if the view has a component for current entity</li></ul> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> ecs <span class="token keyword">from</span> <span class="token string">'./ecs'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> view <span class="token operator">=</span> ecs<span class="token punctuation">.</span><span class="token function">getView</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Name'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Tags'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+view<span class="token punctuation">.</span>result<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> entity<span class="token punctuation">,</span> component<span class="token punctuation">,</span> hasComponent <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Entity </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>entity<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> is called </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'Name'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">hasComponent</span><span class="token punctuation">(</span><span class="token string">'Tags'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string"> * Is tagged with: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'Tags'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>tags<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">', '</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>entity<span class="token punctuation">.</span><span class="token function">hasComponent</span><span class="token punctuation">(</span><span class="token string">'Transform'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> pos <span class="token operator">=</span> entity<span class="token punctuation">.</span><span class="token function">getComponent</span><span class="token punctuation">(</span><span class="token string">'Transform'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>position<span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+      <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">I did not ask for this but this entity is special.
+      It has a place at: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pos<span class="token punctuation">.</span>x<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>pos<span class="token punctuation">.</span>y<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Don't confuse <code>component</code> and <code>hasComponent</code> with the methods available on the entity object wrapper.
+This components are in the context of the view and will only have components you specifed in the query.
+If you need other components, use methods on the entity wrapper object.</p></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/ecsjs/" class="prev router-link-active">
+        ECSJs
+      </a></span> <span class="next"><a href="/ecsjs/listeners.html">
+        Listeners
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/ecsjs/assets/js/app.e1eef895.js" defer></script><script src="/ecsjs/assets/js/2.1562c8f2.js" defer></script><script src="/ecsjs/assets/js/8.8cfe5d7b.js" defer></script>
+  </body>
+</html>
